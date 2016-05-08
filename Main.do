@@ -65,11 +65,12 @@ foreach vr of varlist `vrs' {
 }
 count if touse
 
-gen OIK = uOI/uK
-replace touse =0 if OIK<0.01
+// only for Konly models, to avoid negative OI
+//gen OIK = uOI/uK
+//replace touse=0 if OIK<0.01
 
 // gvkey fyear ind age Z L_Z X L_X W L_W F_N N L_N vrs
-outsheet gvkey fyear ind age X X X X X X X X X `vrs' using data\data_160501`RD_NRD'.csv if touse, comma replace nonames nolabel
+outsheet gvkey fyear ind age X X X X X X X X X `vrs' using data\data_160508`RD_NRD'.csv if touse, comma replace nonames nolabel
 
 
 
